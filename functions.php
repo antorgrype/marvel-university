@@ -16,5 +16,12 @@ add_action('wp_enqueue_scripts', 'marvel_university_enqueue_styles');
 // add theme support for title tag
 function marvel_university_features() {
     add_theme_support('title-tag');
+
+    // register navigation menus
+    register_nav_menus([
+        'header-menu' => __('Header Menu'),
+        'footer-menu-one' => __('Footer Menu One'),
+        'footer-menu-two' => __('Footer Menu Two'),
+    ]);
 }
 add_action('after_setup_theme', 'marvel_university_features');
