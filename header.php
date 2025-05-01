@@ -18,18 +18,22 @@
             <i class="site-header__menu-trigger fa fa-bars" aria-hidden="true"></i>
             <div class="site-header__menu group">
                 <nav class="main-navigation">
-                    <!-- <ul>
-                        <li><a href="<?= site_url('/about-us') ?>">About Us</a></li>
+                    <ul>
+                        <?php
+                            $aboutPageId = get_page_by_path('about-us')->ID;
+                            $aboutUsClass = (is_page('about-us') || wp_get_post_parent_id(get_the_ID()) == $aboutPageId) ? 'current-menu-item' : '';
+                        ?>
+                        <li class="<?= $aboutUsClass ?>"><a href="<?= site_url('/about-us') ?>">About Us</a></li>
                         <li><a href="#">Programs</a></li>
                         <li><a href="#">Events</a></li>
                         <li><a href="#">Campuses</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul> -->
-                    <?php
+                        <li <?php if(get_post_type() == 'post') echo 'class="current-menu-item"' ?>><a href="<?= site_url('/blog')?>">Blog</a></li>
+                    </ul>
+                    <!-- <?php
                         wp_nav_menu([
                             'theme_location' => 'header-menu',
                         ])
-                    ?>
+                    ?> -->
                 </nav>
                 <div class="site-header__util">
                     <a href="#" class="btn btn--small btn--orange float-left push-right">Login</a>
