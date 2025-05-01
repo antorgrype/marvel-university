@@ -11,3 +11,10 @@ function marvel_university_enqueue_styles() {
 }
 
 add_action('wp_enqueue_scripts', 'marvel_university_enqueue_styles');
+
+
+// add theme support for title tag
+function marvel_university_features() {
+    add_theme_support('title-tag');
+}
+add_action('after_setup_theme', 'marvel_university_features');
