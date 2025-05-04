@@ -44,6 +44,8 @@ function marvel_university_post_types()
         ],
         'show_in_rest' => true,
         'menu_icon' => 'dashicons-calendar',
+        'has_archive' => true,
+        'rewrite' => ['slug' => 'events'],
     ]);
 }
 
