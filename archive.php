@@ -20,7 +20,7 @@ get_header(); ?>
         <p>Posted by <?= the_author_posts_link() ?> on <?= the_time('y-m-d H:i') ?> on <?= the_category(', ') ?></p>
       </div>
       <div class="generic-content">
-        <p><?= the_excerpt(); ?></p>
+        <p><?= has_excerpt() ? get_the_excerpt() : wp_trim_words(get_the_content(), 18) ?></p>
         <p><a class="btn btn--blue" href="<?= the_permalink() ?>">Continue Reading &raquo;</a></p>
       </div>
     </div>
