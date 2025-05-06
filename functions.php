@@ -51,3 +51,22 @@ function marvel_university_post_types()
 }
 
 add_action('init', 'marvel_university_post_types');
+
+function marvel_adjust_query($query) {
+    if(!is_admin() && is_post_type_archive('event') && $query->is_main_query()) {
+        $today = date('Ymd');
+        $query->set('meta_key', 'event_date');
+        $query->set('orderby', 'meta_value_num');
+        $query->set('order', 'ASC');
+        $query->set('meta_query', [
+            [
+                'key' => 'event_date',
+                'compare' => '>=',
+                'value' => $today,
+            ]
+            ]);
+    }
+    return $query;
+}
+
+add_action('pre_get_posts', 'marvel_adjust_query');
